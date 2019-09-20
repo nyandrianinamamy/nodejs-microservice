@@ -6,8 +6,9 @@
   "scripts": {
     "test": "jest",
     "dev": "nodemon src/app.ts",
-    "dev:debug": "nodemon --inspect src/app.ts"
-  },
+    "dev:debug": "nodemon --inspect src/app.ts",
+    "lint": "tslint --project ./tsconfig.json src/**/*.ts"
+  }, 
   "keywords": [
     "NodeJS",
     "API",
