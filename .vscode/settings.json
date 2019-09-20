@@ -1,0 +1,11 @@
+{
+    "editor.formatOnSave": true,
+    "prettier.bracketSpacing": true,
+    "prettier.tabWidth": 4,
+    "prettier.singleQuote": true,
+    "[typescript]": {
+        "editor.codeActionsOnSave": {
+            "source.organizeImports": true
+        }
+    }
+}
