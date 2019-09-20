@@ -1,11 +1,11 @@
-import { UserBuilder } from "./user.entity";
-import crypto from "crypto";
+import crypto from 'crypto';
+import { UserBuilder } from './user.entity';
 
 const md5 = (text: string) =>
   crypto
-    .createHash("md5")
+    .createHash('md5')
     .update(text)
-    .digest("hex");
+    .digest('hex');
 
 const makeUser = new UserBuilder({ hasher: md5 }).makeUser;
 

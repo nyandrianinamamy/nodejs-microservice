@@ -1,9 +1,9 @@
-import express from "express";
+import express from 'express';
 
 const server = express();
 
-server.use("/_health", (_req, res) => {
-  res.status(200).json({ uptime: process.uptime() });
+server.use('/_health', (req, res) => {
+    res.status(200).json({ uptime: process.uptime() });
 });
 
-server.listen(4004, () => console.log("Running at localhost:4004"));
+server.listen(4004, () => console.log('Running at localhost:4004'));

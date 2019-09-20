@@ -1,5 +1,3 @@
-import { User } from "../entity/user.entity";
-
 export interface BaseRepository {
   find: (conditions: any) => Promise<any[]>;
 }
@@ -12,7 +10,6 @@ export class UserRepositoryBuilder {
     this.baseRepository = baseRepository;
   }
   find = async (conditions: any) => {
-    const result = await this.baseRepository.find(conditions);
-    return result;
+    return this.baseRepository.find(conditions);
   };
 }
