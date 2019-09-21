@@ -25,6 +25,23 @@ git clone https://github.com/nyandrianinamamy/nodejs-microservice.git
 cd nodejs-microservice
 ```
 
+Create environment files
+
+```
+# .env, for common environment variable
+APP_ID=nodejs-microservice
+```
+
+```
+# .env.test, for test environment variable
+LOG_LEVEL=debug
+```
+
+```
+# .env.production, for production environment variable
+LOG_LEVEL=production
+```
+
 Install dependencies
 
 ```
@@ -55,8 +72,8 @@ npm run test
 
 ## Authors
 
-- **Ny Andrianina Mamy R.** - _Initial work_ - [nyandrianinamamy](https://github.com/nyandrianinamamy)
-- **Ny Hasinavalona R.** - _Initial work_ - [nyhasina](https://github.com/nyhasina)
+-   **Ny Andrianina Mamy R.** - _Initial work_ - [nyandrianinamamy](https://github.com/nyandrianinamamy)
+-   **Ny Hasinavalona R.** - _Initial work_ - [nyhasina](https://github.com/nyhasina)
 
 ## License
 
