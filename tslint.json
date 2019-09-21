@@ -15,7 +15,7 @@
         "no-return-await": true,
         "no-unnecessary-class": true,
         "no-any": true,
-        "semicolon": [true, "always"],
+        "semicolon": [true, "always", "ignore-bound-class-methods"],
         "arrow-return-shorthand": [true, "multiline"],
         "no-consecutive-blank-lines": true,
         "only-arrow-functions": true,
@@ -149,7 +149,10 @@
         "mccabe-complexity": [true, 8],
         "no-big-function": [true, 35],
         "no-dead-store": true,
-        "parameters-max-number": [true, 5]
+        "parameters-max-number": [true, 5],
+        "ban-types": false,
+        "trailing-comma": false,
+        "interface-name": false
     },
     "rulesDirectory": []
 }

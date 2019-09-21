@@ -1,6 +1,5 @@
 export class UserBuilder {
-    // tslint:disable-next-line: no-any
-    makeHash: any;
+    makeHash: Function;
 
     // tslint:disable-next-line: no-any
     constructor({ hasher }: any) {
