@@ -40,4 +40,11 @@ const logger: Logger = winston.createLogger({
     exitOnError: false,
 });
 
+class MorganStream {
+    write(text: string) {
+        logger.info(text.trim());
+    }
+}
+
+export const morganStream: MorganStream = new MorganStream();
 export default logger;
