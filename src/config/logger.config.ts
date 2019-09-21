@@ -6,30 +6,25 @@ const format = winston.format.printf(
 
 const logger: Logger = winston.createLogger({
     transports: [
-        new winston.transports.Console(),
+        new winston.transports.Console({
+            handleExceptions: true,
+        }),
         new winston.transports.File({
             filename: `${__dirname}/../../logs/infos.log`,
             level: 'info',
             maxsize: 5242880,
             maxFiles: 50,
+            handleExceptions: true,
         }),
         new winston.transports.File({
             filename: `${__dirname}/../../logs/errors.log`,
             level: 'error',
             maxsize: 5242880,
             maxFiles: 50,
+            handleExceptions: true,
         }),
         new winston.transports.File({
-            filename: `${__dirname}/../../logs/warns.log`,
-            level: 'warn',
-            maxsize: 5242880,
-            maxFiles: 50,
-        }),
-        new winston.transports.File({
-            filename: `${__dirname}/../../logs/debugs.log`,
-            level: 'debug',
-            maxsize: 5242880,
-            maxFiles: 50,
+            filename: `${__dirname}/../../logs/events.log`,
         }),
     ],
     format: winston.format.combine(
@@ -37,6 +32,12 @@ const logger: Logger = winston.createLogger({
         winston.format.colorize(),
         format,
     ),
+    exceptionHandlers: [
+        new winston.transports.File({
+            filename: `${__dirname}/../../logs/exceptions.log`,
+        }),
+    ],
+    exitOnError: false,
 });
 
 export default logger;
