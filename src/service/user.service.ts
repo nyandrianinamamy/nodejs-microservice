@@ -1,19 +1,22 @@
-import { makeUser } from '../entity';
-import { User } from '../entity/user.entity';
+import { userBuilder } from '../entity';
+import { IUser } from '../entity/user.entity';
 import { UserRepository } from '../repository/user.repository';
 
 export class UserServiceBuilder {
     userRepository: UserRepository;
 
+    // tslint:disable-next-line: no-any
     constructor({ userRepository }: any) {
         this.userRepository = userRepository;
     }
-    addUser = async (userInfo: User) => {
-        const user = makeUser(userInfo);
-        const exists = await this.userRepository.find({});
-    };
+    async addUser(userInfo: IUser) {
+        const user: IUser = userBuilder.makeUser(userInfo);
+        const exists = await this.userRepository.findOne(user._id);
+        if (exists) {
+            return exists;
+        }
+        return this.userRepository.create(user);
+    }
 
-    getAllUsers = async (): Promise<User[]> => {
-        return this.userRepository.find({});
-    };
+    getAllUsers = async (): Promise<IUser[]> => this.userRepository.find({});
 }
