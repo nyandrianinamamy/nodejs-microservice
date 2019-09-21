@@ -4,7 +4,7 @@ import logger, { morganStream } from './config/logger.config';
 
 const server = express();
 
-server.use(morgan('combined', { stream: morganStream }));
+server.use(morgan('tiny', { stream: morganStream }));
 server.use('/_health', (req, res) => {
     res.status(200).json({ uptime: process.uptime() });
 });
