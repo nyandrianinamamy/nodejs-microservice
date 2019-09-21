@@ -151,8 +151,7 @@
         "no-dead-store": true,
         "parameters-max-number": [true, 5],
         "ban-types": false,
-        "trailing-comma": false,
-        "interface-name": false
+        "trailing-comma": false
     },
     "rulesDirectory": []
 }
