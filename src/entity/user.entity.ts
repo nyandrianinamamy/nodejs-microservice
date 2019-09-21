@@ -1,10 +1,13 @@
 export class UserBuilder {
+    // tslint:disable-next-line: no-any
     makeHash: any;
 
+    // tslint:disable-next-line: no-any
     constructor({ hasher }: any) {
         this.makeHash = hasher;
     }
-    makeUser = (user: User) => {
+
+    makeUser(user: IUser) {
         if (!user.name) {
             throw new Error('User must have a name.');
         }
@@ -13,12 +16,12 @@ export class UserBuilder {
         }
         return {
             ...user,
-            hash: this.makeHash(user.name)
+            hash: this.makeHash(user.name),
         };
-    };
+    }
 }
 
-export interface User {
+export interface IUser {
     _id: string;
     hash?: string;
     name: string;
