@@ -1,15 +1,18 @@
-export interface BaseRepository {
-  find: (conditions: any) => Promise<any[]>;
+import { User } from '../entity/user.entity';
+
+export interface BaseRepository<T> {
+    find: (conditions: object) => Promise<T[]>;
 }
 
-export interface UserRepository extends BaseRepository {}
+export interface UserRepository extends BaseRepository<User> {}
 
 export class UserRepositoryBuilder {
-  private baseRepository: BaseRepository;
-  constructor({ baseRepository }: any) {
-    this.baseRepository = baseRepository;
-  }
-  find = async (conditions: any) => {
-    return this.baseRepository.find(conditions);
-  };
+    // tslint:disable-next-line: no-any
+    constructor({ baseRepository }: any) {
+        this.baseRepository = baseRepository;
+    }
+
+    private readonly baseRepository: BaseRepository<User>;
+
+    find = async (conditions: object) => this.baseRepository.find(conditions);
 }

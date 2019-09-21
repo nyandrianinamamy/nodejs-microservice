@@ -1,9 +1,11 @@
 export class UserBuilder {
-    makeHash: any;
+    makeHash: Function;
 
+    // tslint:disable-next-line: no-any
     constructor({ hasher }: any) {
         this.makeHash = hasher;
     }
+
     makeUser = (user: User) => {
         if (!user.name) {
             throw new Error('User must have a name.');

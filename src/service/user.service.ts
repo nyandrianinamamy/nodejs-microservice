@@ -5,6 +5,7 @@ import { UserRepository } from '../repository/user.repository';
 export class UserServiceBuilder {
     userRepository: UserRepository;
 
+    // tslint:disable-next-line: no-any
     constructor({ userRepository }: any) {
         this.userRepository = userRepository;
     }
@@ -13,7 +14,5 @@ export class UserServiceBuilder {
         const exists = await this.userRepository.find({});
     };
 
-    getAllUsers = async (): Promise<User[]> => {
-        return this.userRepository.find({});
-    };
+    getAllUsers = async (): Promise<User[]> => this.userRepository.find({});
 }
