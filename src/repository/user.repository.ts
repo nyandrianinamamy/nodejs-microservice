@@ -1,15 +1,5 @@
-export interface BaseRepository {
-  find: (conditions: any) => Promise<any[]>;
-}
+import { IUser } from '../entity/user.entity';
+import { BaseRepository } from './base.repository';
 
-export interface UserRepository extends BaseRepository {}
-
-export class UserRepositoryBuilder {
-  private baseRepository: BaseRepository;
-  constructor({ baseRepository }: any) {
-    this.baseRepository = baseRepository;
-  }
-  find = async (conditions: any) => {
-    return this.baseRepository.find(conditions);
-  };
-}
+// tslint:disable-next-line: no-empty-interface
+export class UserRepository extends BaseRepository<IUser> {}
