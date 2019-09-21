@@ -42,7 +42,7 @@ const logger: Logger = winston.createLogger({
 
 class MorganStream {
     write(text: string) {
-        logger.info(text.trim());
+        logger.info(`server.handler ${text.trim()}`);
     }
 }
 
