@@ -23,9 +23,6 @@ const logger: Logger = winston.createLogger({
             maxFiles: 50,
             handleExceptions: true,
         }),
-        new winston.transports.File({
-            filename: `${__dirname}/../../logs/events.log`,
-        }),
     ],
     format: winston.format.combine(
         winston.format.timestamp(),
