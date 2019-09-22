@@ -25,3 +25,9 @@ export interface IUser {
     hash?: string;
     name: string;
 }
+
+export interface User {
+    _id: string;
+    hash?: string;
+    name: string;
+}
