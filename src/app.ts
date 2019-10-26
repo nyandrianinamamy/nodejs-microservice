@@ -1,13 +1,19 @@
+import * as bodyParser from 'body-parser';
 import express from 'express';
 import morgan from 'morgan';
+import { appRouter } from './app.routes';
 import logger, { morganStream } from './config/logger.config';
 
 const server = express();
 
+server.use(bodyParser.json());
+server.use(bodyParser.urlencoded({ extended: true }));
 server.use(morgan('tiny', { stream: morganStream }));
 server.use('/_health', (req, res) => {
     res.status(200).json({ uptime: process.uptime() });
 });
+
+server.use('/api/v1', appRouter);
 
 server.listen(4004, () =>
     logger.info('server.handler Running at localhost:4004'),
