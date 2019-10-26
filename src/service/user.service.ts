@@ -9,9 +9,9 @@ export class UserServiceBuilder {
     constructor({ userRepository }: any) {
         this.userRepository = userRepository;
     }
-    async addUser(userInfo: IUser) {
+    async addUser(userInfo: IUser): Promise<IUser> {
         const user: IUser = userBuilder.makeUser(userInfo);
-        const exists = await this.userRepository.findOne(user._id);
+        const exists = await this.userRepository.findOne(user.email);
         if (exists) {
             return exists;
         }
