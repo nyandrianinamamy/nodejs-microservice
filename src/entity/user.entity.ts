@@ -7,21 +7,33 @@ export class UserBuilder {
     }
 
     makeUser(user: IUser) {
-        if (!user.name) {
-            throw new Error('User must have a name.');
+        if (!user.email) {
+            throw new Error('User must have an email address.');
         }
-        if (user.name.length < 2) {
+        if (user.firstName && user.firstName.length < 3) {
             throw new Error('User name must have at least 3 characters');
+        }
+        if (!user.password) {
+            throw new Error('User must have a password');
+        }
+        if (user.password.length < 8) {
+            throw new Error('User password must have at least 8 characters');
         }
         return {
             ...user,
-            hash: this.makeHash(user.name),
+            hash: this.makeHash(user.email),
         };
     }
 }
 
 export interface IUser {
-    _id: string;
+    // tslint:disable: no-any member-ordering
+    _id: any;
+    email: string;
+    firstName: string;
+    lastName: string;
+    password: string;
     hash?: string;
-    name: string;
+    createdAt?: Date;
+    updatedAt?: Date;
 }
