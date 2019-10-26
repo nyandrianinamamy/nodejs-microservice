@@ -11,10 +11,10 @@ export abstract class BaseRepository<T> implements IRead<T>, IWrite<T> {
         this.db = db;
     }
     private readonly db: IDb;
-    create(item: T): Promise<boolean> {
+    create(item: T): Promise<T> {
         throw new Error(NOT_IMPLEMENTED);
     }
-    delete(id: string): Promise<boolean> {
+    delete(id: string): Promise<T> {
         throw new Error(NOT_IMPLEMENTED);
     }
 
@@ -25,7 +25,7 @@ export abstract class BaseRepository<T> implements IRead<T>, IWrite<T> {
     findOne(id: string): Promise<T> {
         throw new Error(NOT_IMPLEMENTED);
     }
-    update(id: string, item: T): Promise<boolean> {
+    update(id: string, item: T): Promise<T> {
         throw new Error(NOT_IMPLEMENTED);
     }
 }
