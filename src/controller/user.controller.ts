@@ -8,6 +8,6 @@ export class UserControllerBuilder {
         res: Response,
         next: NextFunction,
     ): Promise<void> {
-        wrapResponse(userService.addUser(req.body), req, res);
+        wrapResponse(userService.addUser(req.body), req, res, next);
     }
 }

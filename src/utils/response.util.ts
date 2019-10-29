@@ -1,5 +1,4 @@
-import { Request, Response } from 'express';
-import logger from '../config/logger.config';
+import { NextFunction, Request, Response } from 'express';
 
 // tslint:disable-next-line: no-any
 export const reS = (data: any, res: Response) => {
@@ -20,11 +19,12 @@ export const wrapResponse = async <T>(
     p: Promise<T>,
     req: Request,
     res: Response,
+    next: NextFunction,
 ): Promise<void> => {
     try {
         reS(await p, res);
     } catch (e) {
-        logger.error(e.stack);
-        reE(e, res);
+        // pass error to error middleware
+        next(e);
     }
 };
