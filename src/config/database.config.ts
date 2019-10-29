@@ -2,8 +2,11 @@ import mongoose from 'mongoose';
 import logger from './logger.config';
 
 export class MongoDatabase {
-    connect(cb: () => void) {
-        const userDbUrl = 'mongodb://localhost:27017/dx-user';
+    connect(cb: () => void, test = false) {
+        let userDbUrl = 'mongodb://localhost:27017/dx-user';
+        if (test) {
+            userDbUrl = 'mongodb://localhost:27017/testDB';
+        }
         mongoose.connect(userDbUrl, {
             useNewUrlParser: true,
             useUnifiedTopology: true,
