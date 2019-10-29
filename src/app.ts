@@ -18,7 +18,7 @@ database.connect(() => {
     });
 
     process.on('unhandledRejection', (e) => {
-        logger.error(e);
+        logger.error(JSON.stringify(e));
         process.exit(1);
     });
 });
