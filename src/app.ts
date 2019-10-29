@@ -11,4 +11,14 @@ database.connect(() => {
     process.on('exit', (code) => {
         logger.info(`Process exited with code ${code}`);
     });
+
+    process.on('uncaughtException', (e) => {
+        logger.error(e);
+        process.exit(1);
+    });
+
+    process.on('unhandledRejection', (e) => {
+        logger.error(e);
+        process.exit(1);
+    });
 });
