@@ -1,6 +1,6 @@
-import { App } from './app.config';
-import { MongoDatabase } from './database.config';
-import { Routes } from './routes.config';
+import { MongoDatabase } from '../app/app.database';
+import { Routes } from '../app/app.routes';
+import { App } from '../app/app.server';
 
 const database = new MongoDatabase();
 const routes = new Routes().getRouter();

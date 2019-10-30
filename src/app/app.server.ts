@@ -1,10 +1,10 @@
 import * as bodyParser from 'body-parser';
 import express from 'express';
 import morgan from 'morgan';
-import { routes } from '.';
+import { routes } from '../config';
+import logger, { morganStream } from '../config/logger.config';
+import { applyMiddleware } from '../utils/apply-middleware';
 import errorHandlersMiddleware from '../utils/errors/error.middleware';
-import { applyMiddleware } from './../utils/apply-middleware';
-import logger, { morganStream } from './logger.config';
 export class App {
     init() {
         const server = express();

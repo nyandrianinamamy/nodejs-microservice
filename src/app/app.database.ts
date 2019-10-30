@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import logger from './logger.config';
+import logger from '../config/logger.config';
 
 export class MongoDatabase {
     connect(cb: () => void, test = false) {
