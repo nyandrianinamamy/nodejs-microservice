@@ -1,22 +1,18 @@
 import { expect } from 'chai';
 import { userRepository } from '.';
-import { fakeDb } from '../../__test__/fixtures/db.fixture';
-import { UserRepository } from './user.repository';
+import { database } from '../config';
 
 describe('User Repository on current db', () => {
+    // Clear db before
+    // before(async () => {
+    //     database.connect(async () => {
+    //         await userRepository.
+    //     })
+    // })
     it('should find users', async () => {
-        const result = await userRepository.find({});
-        expect(result.length).to.equal(2);
-    });
-});
-
-let fakeDbUserRepository: UserRepository;
-describe('User Repository on fake db', () => {
-    before(() => {
-        fakeDbUserRepository = new UserRepository(fakeDb);
-    });
-    it('should find users', async () => {
-        const result = await fakeDbUserRepository.find({});
-        expect(result.length).to.equal(2);
+        database.connect(async () => {
+            const result = await userRepository.find({}).exec();
+            expect(result.length).to.equal(2);
+        }, true);
     });
 });
