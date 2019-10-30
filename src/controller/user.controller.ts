@@ -10,4 +10,11 @@ export class UserControllerBuilder {
     ): Promise<void> {
         wrapResponse(userService.addUser(req.body), req, res, next);
     }
+    async findAll(
+        req: Request,
+        res: Response,
+        next: NextFunction,
+    ): Promise<void> {
+        wrapResponse(userService.getAllUsers(), req, res, next);
+    }
 }
