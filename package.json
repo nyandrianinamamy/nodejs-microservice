@@ -2,12 +2,12 @@
     "name": "nodejs-ts-microservice",
     "version": "0.0.1",
     "description": "A NodeJS TypeScript Microservice API based on the Clean Architecture",
-    "main": "app.ts",
+    "main": "index.ts",
     "scripts": {
         "test": "mocha -r ts-node/register src/**/**.spec.ts",
         "test:dev": "mocha -r ts-node/register src/**/**.spec.ts --watch --watch-extensions ts",
-        "dev": "nodemon src/app.ts",
-        "dev:debug": "nodemon --inspect src/app.ts",
+        "dev": "nodemon src/index.ts",
+        "dev:debug": "nodemon --inspect src/index.ts",
         "lint": "tslint --project ./tsconfig.json src/**/*.ts"
     },
     "pre-push": [
