@@ -14,6 +14,25 @@ export class UserServiceBuilder {
         return this.userRepository.create(user);
     }
 
+    async deleteUserById(id: string): Promise<boolean> {
+        const user = await this.findUserById(id);
+        if (!user) {
+            throw new Error('User not found');
+        }
+        return this.userRepository.delete(id);
+    }
+
+    async findUserById(id: string): Promise<IUser> {
+        if (!id) {
+            throw new Error('Id not supplied');
+        }
+        const user = await this.userRepository.findOne(id).exec();
+        if (!user) {
+            throw new Error('User not found');
+        }
+        return user;
+    }
+
     async getAllUsers(): Promise<IUser[]> {
         return this.userRepository.find({}).exec();
     }

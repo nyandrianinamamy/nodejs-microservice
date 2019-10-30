@@ -14,5 +14,9 @@ export class UserRoutesBuilder {
         this.router
             .route('/all')
             .get(userController.findAll.bind(userController));
+        this.router
+            .route('/:id')
+            .get(userController.findById.bind(userController))
+            .delete(userController.deleteById.bind(userController));
     }
 }
