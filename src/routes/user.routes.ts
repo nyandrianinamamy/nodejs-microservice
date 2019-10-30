@@ -11,5 +11,8 @@ export class UserRoutesBuilder {
         this.router
             .route('/create')
             .post(userController.create.bind(userController));
+        this.router
+            .route('/all')
+            .get(userController.findAll.bind(userController));
     }
 }
