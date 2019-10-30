@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import { Mongoose } from 'mongoose';
 import { userBuilder } from '.';
-import { UserModel } from './user.mongoose.schema';
+import { userModel } from './user.mongoose.schema';
 
 // tslint:disable: no-hardcoded-credentials
 export const JOHN_DOE = {
@@ -49,7 +49,7 @@ describe('User in db', () => {
     xit('should create user model', function() {
         const user = userBuilder.makeUser(JOHN_DOE);
         this.timeout(5000);
-        const createdUser = new UserModel(user);
+        const createdUser = new userModel(user);
         return createdUser
             .save()
             .then((result) => Promise.resolve())
