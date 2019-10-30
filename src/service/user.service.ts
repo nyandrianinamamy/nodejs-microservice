@@ -11,12 +11,10 @@ export class UserServiceBuilder {
     }
     async addUser(userInfo: IUser): Promise<IUser> {
         const user: IUser = userBuilder.makeUser(userInfo);
-        const exists = await this.userRepository.findOne(user.email);
-        if (exists) {
-            return exists;
-        }
         return this.userRepository.create(user);
     }
 
-    getAllUsers = async (): Promise<IUser[]> => this.userRepository.find({});
+    async getAllUsers(): Promise<IUser[]> {
+        return this.userRepository.find({}).exec();
+    }
 }
