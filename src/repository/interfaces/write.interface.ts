@@ -1,5 +1,7 @@
-export interface IWrite<T> {
-    create(item: T): Promise<T>;
-    delete(id: string): Promise<T>;
-    update(id: string, item: T): Promise<T>;
+import { Document } from 'mongoose';
+
+export interface IWrite<D extends Document, I> {
+    create(item: Partial<I>): Promise<D>;
+    delete(id: string): Promise<boolean>;
+    update(id: string, item: Partial<I>): Promise<D | null>;
 }
