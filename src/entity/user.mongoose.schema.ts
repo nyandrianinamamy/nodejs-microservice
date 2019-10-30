@@ -1,7 +1,6 @@
 import { Document, Model, model, Schema } from 'mongoose';
 import { IUser } from './user.entity';
 
-// tslint:disable: variable-name
 export interface IUserModel extends IUser, Document {
     fullName(): string;
 }
@@ -19,6 +18,7 @@ userSchema.pre('save', function(next) {
     if (!this.get('createdAt')) {
         const now = new Date();
         this.set('createdAt', now);
+        this.set('updatedAt', now);
     }
     next();
 });
