@@ -1,8 +1,8 @@
 import { database, server } from './config';
 import logger from './config/logger.config';
 
-database.connect(() => {
-    server.init();
+database.connect(async () => {
+    await server.init();
     process.on('SIGINT', () => {
         logger.info(`Process killed manually`);
         process.exit(1);
