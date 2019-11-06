@@ -1,5 +1,5 @@
-import { userBuilder } from '../entity';
-import { IUser } from '../entity/user.entity';
+import { userBuilder } from '../entities';
+import { IUser } from '../entities/user.entity';
 import { UserRepository } from '../repository/user.repository';
 
 export class UserServiceBuilder {

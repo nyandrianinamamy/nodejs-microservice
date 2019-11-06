@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { userRouter } from '../routes';
+import { userRouter } from '../user/routes';
 
 export class Routes {
     router: Router;

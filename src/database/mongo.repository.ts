@@ -1,6 +1,6 @@
 import { Document, DocumentQuery, Model } from 'mongoose';
-import { IRead } from '../interfaces/read.interface';
-import { IWrite } from '../interfaces/write.interface';
+import { IRead } from './interfaces/read.interface';
+import { IWrite } from './interfaces/write.interface';
 
 // tslint:disable: no-any
 export type IDb<D extends Document, I> = IRead<D, I> & IWrite<D, I>;

@@ -1,12 +1,12 @@
 import chai from 'chai';
 import chaiHttp from 'chai-http';
 import { before } from 'mocha';
-import { App } from '../app/app.server';
-import { userBuilder } from '../entity';
-import { IUser } from '../entity/user.entity';
-import { JOHN_DOE } from '../entity/user.entity.spec';
-import { userModel } from '../entity/user.mongoose.schema';
-import * as dbHandler from './db.handler';
+import { App } from '../../app/app.server';
+import * as dbHandler from '../../utils/db.handler';
+import { userBuilder } from '../entities';
+import { IUser } from '../entities/user.entity';
+import { JOHN_DOE } from '../entities/user.entity.spec';
+import { userModel } from '../entities/user.mongoose.schema';
 process.env.NODE_ENV = 'test';
 
 const app = new App();

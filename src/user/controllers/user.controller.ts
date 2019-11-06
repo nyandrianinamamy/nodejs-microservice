@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
-import { userService } from '../service';
-import { wrapResponse } from '../utils/response.util';
+import { wrapResponse } from '../../utils/response.util';
+import { userService } from '../services';
 
 export class UserControllerBuilder {
     async create(

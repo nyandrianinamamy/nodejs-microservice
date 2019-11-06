@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import { userRepository } from '.';
-import { database } from '../config';
-import { JOHN_DOE } from '../entity/user.entity.spec';
+import { database } from '../../config';
+import { JOHN_DOE } from '../entities/user.entity.spec';
 
 describe('User Repository on current db', () => {
     // Clear db before
