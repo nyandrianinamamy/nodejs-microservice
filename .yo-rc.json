@@ -1,0 +1,5 @@
+{
+    "generator-nodejs-microservice": {
+        "baseDir": "src"
+    }
+}
