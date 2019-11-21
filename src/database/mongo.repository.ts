@@ -1,14 +1,11 @@
 import { Document, DocumentQuery, Model } from 'mongoose';
 import { buildFilter, buildSearch } from '../utils/query.utils';
-import { IRead } from './interfaces/read.interface';
-import { IWrite } from './interfaces/write.interface';
+import { BaseRepository } from './base.repository';
 
 // tslint:disable: no-any
-export type IDb<D extends Document, I> = IRead<D, I> & IWrite<D, I>;
-
 export const NOT_IMPLEMENTED = 'Repository Method not implemented.';
 
-export abstract class MongoRepository<D extends Document, I> implements IRead<D, I>, IWrite<D, I> {
+export abstract class MongoRepository<D extends Document, I> implements BaseRepository<D, I> {
     model: Model<any>;
     query = {};
     constructor(model: Model<D>) {
