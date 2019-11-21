@@ -10,8 +10,8 @@ export class MongoDatabase {
         mongoose.connect(userDbUrl, {
             useNewUrlParser: true,
             useUnifiedTopology: true,
-            useFindAndModify: true,
-            useCreateIndex: true,
+            useFindAndModify: false,
+            useCreateIndex: true
         });
         mongoose.connection.once('open', () => {
             cb();
@@ -19,9 +19,7 @@ export class MongoDatabase {
         mongoose.connection.on('disconnected', () => {
             logger.error(`Disconnected to database`);
         });
-        mongoose.connection.on('connected', () =>
-            logger.info('Database connected'),
-        );
+        mongoose.connection.on('connected', () => logger.info('Database connected'));
         mongoose.connection.on('error', (err) => {
             logger.error('Database not connected');
         });
