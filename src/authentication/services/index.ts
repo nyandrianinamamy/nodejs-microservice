@@ -1,6 +1,6 @@
-import { authenticationRepository } from '../repository';
+import { userRepository } from '../../user/repository';
 import { AuthenticationServiceBuilder } from './authentication.services';
 
-const authenticationService = new AuthenticationServiceBuilder({ authenticationRepository });
+const authenticationService = new AuthenticationServiceBuilder({ userRepository });
 
-export { authenticationService, authenticationRepository };
+export { authenticationService };

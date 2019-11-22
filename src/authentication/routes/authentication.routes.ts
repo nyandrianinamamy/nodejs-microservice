@@ -8,13 +8,6 @@ export class AuthenticationRoutesBuilder {
     }
 
     private init() {
-        this.router.route('/')
-            .get(authenticationController.find.bind(authenticationController))
-            .post(authenticationController.create.bind(authenticationController));
-        this.router
-            .route('/:id')
-            .get(authenticationController.findById.bind(authenticationController))
-            .delete(authenticationController.deleteById.bind(authenticationController))
-            .put(authenticationController.update.bind(authenticationController));
+        this.router.route('/login').post(authenticationController.login.bind(authenticationController));
     }
 }

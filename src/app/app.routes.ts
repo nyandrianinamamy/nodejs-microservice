@@ -1,4 +1,6 @@
 import { Router } from 'express';
+import passport from 'passport';
+import { authenticationRouter } from '../authentication/routes';
 import { userRouter } from '../user/routes';
 
 export class Routes {
@@ -13,6 +15,7 @@ export class Routes {
     }
 
     private init() {
-        this.router.use('/user', userRouter);
+        this.router.use('/authentication', authenticationRouter);
+        this.router.use('/user', passport.authenticate('jwt', { session: false }), userRouter);
     }
 }

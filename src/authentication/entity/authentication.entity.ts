@@ -1,9 +1,9 @@
 export class AuthenticationBuilder {
     makeAuthentication(authentication: IAuthentication) {
-        if (!authentication.name) {
+        if (!authentication.email) {
             throw new Error('Authentication must have a name.');
         }
-        if (!authentication.description) {
+        if (!authentication.password) {
             throw new Error('Authentication must have a description.');
         }
         return {
@@ -15,8 +15,8 @@ export class AuthenticationBuilder {
 export interface IAuthentication {
     // tslint:disable: no-any member-ordering
     _id: any;
-    name: string;
-    description: string;
+    email: string;
+    password: string;
     createdAt: Date;
     updatedAt: Date;
 }
