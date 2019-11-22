@@ -1,6 +1,7 @@
 import passport from 'passport';
 import { ExtractJwt, Strategy as JwtStrategy } from 'passport-jwt';
 import { Strategy as LocalStrategy } from 'passport-local';
+import { env } from '../config/env.config';
 import { comparePassword } from '../utils/password.utils';
 import { userRepository } from './../user/repository';
 
@@ -18,7 +19,7 @@ const localStrategy = new LocalStrategy({ usernameField: 'email' }, async (email
 
 const jwtStrategy = new JwtStrategy(
     {
-        secretOrKey: process.env.JWT_SECRET,
+        secretOrKey: env.jwt.secretKey,
         jwtFromRequest: ExtractJwt.fromExtractors([ExtractJwt.fromAuthHeaderAsBearerToken()])
     },
     async (payload, done) => {
