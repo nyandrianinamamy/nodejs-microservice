@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import jwt from 'jsonwebtoken';
 import passport from 'passport';
+import { env } from '../../config/env.config';
 import { UserRepository } from '../../user/repository/user.repository';
 import { IAuthentication } from '../entity/authentication.entity';
 
@@ -20,8 +21,8 @@ export class AuthenticationServiceBuilder {
                     reject(info);
                 }
                 const user = { _id: retUser._id, email: retUser.email };
-                const token = jwt.sign(user, 'secret', {
-                    expiresIn: 20000
+                const token = jwt.sign(user, env.jwt.secretKey, {
+                    expiresIn: env.jwt.expiration
                 });
                 resolve({ user, token });
             })(req, res);
