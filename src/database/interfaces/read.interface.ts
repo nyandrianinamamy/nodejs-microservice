@@ -1,7 +1,7 @@
 import { Document, DocumentQuery } from 'mongoose';
 
 export interface IRead<D extends Document, I> {
-    // tslint:disable-next-line: no-any
+    // tslint:disable: no-any
     find(conditions: any): DocumentQuery<D[], D>;
-    findOne(id: string): DocumentQuery<D | null, D>;
+    findOne(conditions: Record<string, any>): DocumentQuery<D | null, D>;
 }
