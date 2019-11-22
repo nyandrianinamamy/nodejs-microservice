@@ -1,9 +1,9 @@
 import passport from 'passport';
 import { ExtractJwt, Strategy as JwtStrategy } from 'passport-jwt';
 import { Strategy as LocalStrategy } from 'passport-local';
-import { env } from '../config/env.config';
-import { comparePassword } from '../utils/password.utils';
-import { userRepository } from './../user/repository';
+import { env } from '../../config/env.config';
+import { userRepository } from '../../user/repository';
+import { comparePassword } from '../../utils/password.utils';
 
 const localStrategy = new LocalStrategy({ usernameField: 'email' }, async (email, password, done) => {
     const user = await userRepository.findOne({ email }).exec();

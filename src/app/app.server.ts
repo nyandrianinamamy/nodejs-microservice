@@ -6,7 +6,7 @@ import { env } from '../config/env.config';
 import logger, { morganStream } from '../config/logger.config';
 import { applyMiddleware } from '../utils/apply-middleware';
 import errorHandlersMiddleware from '../utils/errors/error.middleware';
-import passport from './app.authentication';
+import passport from './../authentication/config/passport.config';
 export class App {
     server!: Application;
     async init() {
