@@ -34,8 +34,8 @@ export abstract class MongoRepository<D extends Document, I> implements BaseRepo
         return this.model.find(query).exec();
     }
 
-    findOne(id: string): DocumentQuery<D | null, D> {
-        return this.model.findById(id);
+    findOne(conditions: Record<string, any>): DocumentQuery<D | null, D> {
+        return this.model.findOne(conditions);
     }
 
     search(search: string) {
