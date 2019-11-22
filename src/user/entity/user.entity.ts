@@ -1,12 +1,13 @@
 export class UserBuilder {
+    encrypt: Function;
     makeHash: Function;
 
     // tslint:disable-next-line: no-any
-    constructor({ hasher }: any) {
+    constructor({ hasher, encrypter }: any) {
         this.makeHash = hasher;
+        this.encrypt = encrypter;
     }
-
-    makeUser(user: IUser) {
+    async makeUser(user: IUser) {
         if (!user.email) {
             throw new Error('User must have an email address.');
         }
@@ -22,6 +23,7 @@ export class UserBuilder {
         return {
             ...user,
             hash: this.makeHash(user.email),
+            password: await this.encrypt(user.password)
         };
     }
 }
@@ -32,7 +34,6 @@ export interface IUser {
     email: string;
     firstName: string;
     lastName: string;
-    fullName?: Function;
     password: string;
     hash?: string;
     createdAt?: Date;

@@ -3,10 +3,9 @@ import chaiHttp from 'chai-http';
 import { before } from 'mocha';
 import { App } from '../../app/app.server';
 import * as dbHandler from '../../utils/db.handler';
-import { userBuilder } from '../entities';
-import { IUser } from '../entities/user.entity';
-import { JOHN_DOE } from '../entities/user.entity.spec';
-import { userModel } from '../entities/user.mongoose.schema';
+import { userBuilder, userModel } from '../entity';
+import { IUser } from '../entity/user.entity';
+import { JOHN_DOE } from '../entity/user.entity.spec';
 process.env.NODE_ENV = 'test';
 
 const app = new App();
@@ -26,7 +25,7 @@ describe('User end to end', () => {
         await dbHandler.closeDatabase();
     });
     beforeEach(async () => {
-        user = userBuilder.makeUser(JOHN_DOE);
+        user = await userBuilder.makeUser(JOHN_DOE);
         johnDoe = await userModel.create(user);
     });
     afterEach(async () => {

@@ -1,5 +1,5 @@
 import { userRepository } from '../repository';
-import { UserServiceBuilder } from './user.service';
+import { UserServiceBuilder } from './user.services';
 
 const userService = new UserServiceBuilder({ userRepository });
 
