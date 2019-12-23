@@ -4,8 +4,8 @@
     "description": "A NodeJS TypeScript Microservice API based on the Clean Architecture",
     "main": "index.ts",
     "scripts": {
-        "test": "mocha -r ts-node/register src/**/**.spec.ts",
-        "test:dev": "mocha -r ts-node/register src/**/**.spec.ts --watch --watch-extensions ts",
+        "test": "mocha -r ts-node/register $(find src -name '*spec.ts')",
+        "test:watch": "mocha -r ts-node/register $(find src -name '*spec.ts') --watch --watch-extensions ts",
         "dev": "nodemon src/index.ts",
         "dev:debug": "nodemon --inspect src/index.ts",
         "lint": "tslint --project ./tsconfig.json src/**/*.ts"
