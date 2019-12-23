@@ -9,7 +9,7 @@ interface IData {
 let data: IData[];
 let repository: MockRepository<IData>;
 // tslint:disable-next-line: no-big-function
-describe.only('Mock repository', () => {
+describe('Mock repository', () => {
     beforeEach(() => {
         data = [
             {
@@ -42,11 +42,11 @@ describe.only('Mock repository', () => {
         expect(newData.length).to.be.equal(3);
     });
     it('Should find all items', async () => {
-        const items: IData[] = (await repository.find({})) as IData[];
+        const items: IData[] = await repository.find({});
         expect(items.length).to.be.equal(data.length);
     });
     it('Should find item', async () => {
-        const items: IData[] = (await repository.find({ name: 'Foo' })) as IData[];
+        const items: IData[] = await repository.find({ name: 'Foo' });
         expect(items.length).to.be.equal(2);
     });
     it('Should find one item', async () => {

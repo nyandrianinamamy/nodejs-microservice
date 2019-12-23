@@ -30,7 +30,7 @@ export class MockRepository<I extends { [P in any]: any }> implements BaseReposi
         return this;
     }
 
-    find(conditions: Record<any, any>): Promise<I | I[]> {
+    find(conditions: Record<any, any>): Promise<I[]> {
         let result: I[] = [];
         if (Object.entries(conditions).length === 0 && conditions.constructor === Object) {
             result = this.data;
@@ -46,7 +46,7 @@ export class MockRepository<I extends { [P in any]: any }> implements BaseReposi
         return this.find({});
     }
     async findOne(conditions: Record<string, any>): Promise<I | null> {
-        return Promise.resolve(((await this.find(conditions)) as I[])[0]);
+        return Promise.resolve((await this.find(conditions))[0]);
     }
 
     search(search: string) {
@@ -59,7 +59,6 @@ export class MockRepository<I extends { [P in any]: any }> implements BaseReposi
         const updatedItem: I = { ...doc, ...(item as I) };
         this.data = this.data.map((d) => {
             if (d._id === id) {
-                // tslint:disable-next-line: no-parameter-reassignment no-dead-store
                 return { ...d, ...updatedItem };
             }
             return { ...d };
