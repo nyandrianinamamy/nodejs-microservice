@@ -1,7 +1,5 @@
-import { Document, DocumentQuery } from 'mongoose';
-
-export interface IRead<D extends Document, I> {
+export interface IRead<I> {
     // tslint:disable: no-any
-    find(conditions: any): DocumentQuery<D[], D>;
-    findOne(conditions: Record<string, any>): DocumentQuery<D | null, D>;
+    find(conditions: Record<string, any>): Promise<I[] | I>;
+    findOne(conditions: Record<string, any>): Promise<I | null>;
 }
