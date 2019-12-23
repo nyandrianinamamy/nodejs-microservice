@@ -1,22 +1,25 @@
-import { Document, DocumentQuery, Model } from 'mongoose';
+import { Document, Model } from 'mongoose';
 import { buildFilter, buildSearch } from '../utils/query.utils';
 import { BaseRepository } from './base.repository';
 
 // tslint:disable: no-any
 export const NOT_IMPLEMENTED = 'Repository Method not implemented.';
 
-export abstract class MongoRepository<D extends Document, I> implements BaseRepository<D, I> {
+export abstract class MongoRepository<D extends Document, I> implements BaseRepository<I> {
     model: Model<any>;
     query = {};
+    sortField = {};
     constructor(model: Model<D>) {
         this.model = model;
     }
-    create(item: Partial<I>): Promise<D> {
-        return this.model.create(item);
+    async create(item: Partial<I>): Promise<I> {
+        const createdItem: I = await this.model.create(item);
+        return Promise.resolve(createdItem);
     }
 
-    delete(id: string): Promise<boolean> {
-        return this.model.deleteOne({ _id: id }).then(() => true);
+    async delete(id: string): Promise<boolean> {
+        const deleted: boolean = await this.model.deleteOne({ _id: id }).then(() => true);
+        return Promise.resolve(deleted);
     }
 
     filter(filter: Record<string, any>) {
@@ -24,18 +27,28 @@ export abstract class MongoRepository<D extends Document, I> implements BaseRepo
         return this;
     }
 
-    find(conditions: any): DocumentQuery<D[], D> {
-        return this.model.find(conditions);
+    async find(conditions: Record<string, any>): Promise<I[]> {
+        let found: I[];
+        if (this.sortField) {
+            found = await this.model
+                .find(conditions)
+                .sort(this.sortField)
+                .exec();
+        } else {
+            found = await this.model.find(conditions).exec();
+        }
+        return Promise.resolve(found);
     }
 
-    findAndExec() {
+    findAndExec(): Promise<I[]> {
         const query = this.query;
         this.query = {};
-        return this.model.find(query).exec();
+        return this.find(query);
     }
 
-    findOne(conditions: Record<string, any>): DocumentQuery<D | null, D> {
-        return this.model.findOne(conditions);
+    async findOne(conditions: Record<string, any>): Promise<I | null> {
+        const item: I | null = await this.model.findOne(conditions).exec();
+        return Promise.resolve(item);
     }
 
     search(search: string) {
@@ -43,7 +56,13 @@ export abstract class MongoRepository<D extends Document, I> implements BaseRepo
         return this;
     }
 
-    update(id: string, item: Partial<I>): Promise<D | null> {
-        return this.model.findOneAndUpdate({ _id: id }, item).exec();
+    sort(sort: Record<any, any>) {
+        this.sortField = { ...sort };
+        return this;
+    }
+
+    async update(id: string, item: Partial<I>): Promise<I | null> {
+        const updatedItem = await this.model.findOneAndUpdate({ _id: id }, item, { new: true }).exec();
+        return Promise.resolve(updatedItem);
     }
 }
