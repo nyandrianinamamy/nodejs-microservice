@@ -6,7 +6,7 @@ import { userRepository } from '../../user/repository';
 import { comparePassword } from '../../utils/password.utils';
 
 const localStrategy = new LocalStrategy({ usernameField: 'email' }, async (email, password, done) => {
-    const user = await userRepository.findOne({ email }).exec();
+    const user = await userRepository.findOne({ email });
     if (!user) {
         return done(null, false, { message: 'Utilisateur inexistant' });
     }
@@ -23,7 +23,7 @@ const jwtStrategy = new JwtStrategy(
         jwtFromRequest: ExtractJwt.fromExtractors([ExtractJwt.fromAuthHeaderAsBearerToken()])
     },
     async (payload, done) => {
-        const user = await userRepository.findOne({ _id: payload._id }).exec();
+        const user = await userRepository.findOne({ _id: payload._id });
         return user ? done(null, user) : done(null, false);
     }
 );
