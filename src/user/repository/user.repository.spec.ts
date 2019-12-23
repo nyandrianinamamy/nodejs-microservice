@@ -12,13 +12,13 @@ describe('User Repository on current db', () => {
     });
     xit('should find users', async () => {
         database.connect(async () => {
-            const result = await userRepository.find({}).exec();
+            const result = await userRepository.find({});
             expect(result.length).to.equal(1);
         }, true);
     });
     xit('should find John', async () => {
         database.connect(async () => {
-            const user = await userRepository.find({ firstName: 'John' }).exec();
+            const user = await userRepository.find({ firstName: 'John' });
             expect(user.length).to.equal(1);
         });
     });
