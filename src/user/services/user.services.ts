@@ -30,6 +30,7 @@ export class UserServiceBuilder {
         return this.userRepository
             .filter(filter)
             .search(search)
+            .sort(sort)
             .findAndExec();
     }
 
@@ -37,7 +38,7 @@ export class UserServiceBuilder {
         if (!id) {
             throw new Error('Id not supplied');
         }
-        const user = await this.userRepository.findOne({ _id: id }).exec();
+        const user = await this.userRepository.findOne({ _id: id });
         if (!user) {
             throw new Error(NOT_FOUND);
         }
