@@ -1,9 +1,10 @@
 import mongoose from 'mongoose';
+import { env } from '../config/env.config';
 import logger from '../config/logger.config';
 
 export class MongoDatabase {
     connect(cb: () => void, test = false) {
-        let userDbUrl = 'mongodb://localhost:27017/dx-user';
+        let userDbUrl = env.mongodb.dbURI;
         if (test) {
             userDbUrl = 'mongodb://localhost:27017/testDB';
         }
