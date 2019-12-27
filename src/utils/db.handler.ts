@@ -1,4 +1,4 @@
-import { MongoMemoryServer } from 'mongodb-memory-server-core';
+import { MongoMemoryServer } from 'mongodb-memory-server';
 import mongoose from 'mongoose';
 
 const mongod = new MongoMemoryServer();
