@@ -4,7 +4,7 @@ import * as envvar from 'env-var';
 dotenv.config();
 export const env = {
     server: {
-        port: envvar.get('NODE_PORT').asIntPositive() || 4004
+        port: process.env.PORT || envvar.get('NODE_PORT').asIntPositive() || 4004
     },
     mongodb: {
         dbURI: envvar.get('MONGODB_URI').asUrlString() || 'mongodb://localhost:27017/testenv'
